@@ -1,10 +1,41 @@
 import express from "express";
-import { createServer } from "http";
+import { prisma } from "db/client";
 
 const app = express();
-const server = createServer(app);
-// const PORT = process.env.PORT || 7000;
+app.use(express.json());
 
-server.listen((PORT: any) => {
-  console.log(`Server is running on PORT ${PORT}`);
+app.get("/users", (req, res) => {
+  prisma.user
+    .findMany()
+    .then((user: any) => {
+      res.json(user);
+    })
+    .catch((err: any) => {
+      res.status(500).json({ err: err.message });
+    });
 });
+
+app.post("/user", (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    res.status(400).json({ error: "Username and password are required" });
+    return;
+  }
+
+  prisma.user
+    .create({
+      data: {
+        username,
+        password,
+      },
+    })
+    .then((user: any) => {
+      res.status(201).json(user);
+    })
+    .catch((err: any) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+app.listen(8080);
