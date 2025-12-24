@@ -15,7 +15,7 @@ app.get("/users", (req: Request, res: Response) => {
     });
 });
 
-app.post("/user", (req, res) => {
+app.post("/user", (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
