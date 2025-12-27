@@ -3,6 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun --env-file=../../.env run index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -11,7 +14,8 @@
   },
   "dependencies": {
     "@types/express": "^5.0.6",
-    "express": "^5.2.1",
-    "db": "*"
+    "db": "*",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
   }
 }
