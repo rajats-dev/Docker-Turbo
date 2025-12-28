@@ -4,10 +4,12 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --env-file=../../.env run index.ts"
+    "start": "bun --env-file=../../.env run index.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest",
+    "@types/bun": "latest"
+  },
+  "dependencies": {
     "db": "*"
   },
   "peerDependencies": {

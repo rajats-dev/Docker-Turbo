@@ -10,14 +10,19 @@ Bun.serve({
     return new Response("Upgrade failed", { status: 500 });
   },
   websocket: {
-    message(ws, message) {
-      prisma.user.create({
-        data: {
-          username: Math.random().toString(),
-          password: Math.random().toString(),
-        },
-      });
-      ws.send(message);
+    async message(ws, message) {
+      try {
+        await prisma.user.create({
+          data: {
+            username: Math.random().toString(),
+            password: Math.random().toString(),
+          },
+        });
+        ws.send(message);
+      } catch (err) {
+        console.error("DB error:", err);
+        ws.send("DB error");
+      }
     },
   },
 });
