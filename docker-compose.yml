@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - postgresql://postgres:pswrd@postgres:5432/postgres?schema=public
+      DATABASE_URL: ${DOCKER_DATABASE_URL}
     depends_on:
       - postgres
   web:
@@ -17,7 +17,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - postgresql://postgres:pswrd@postgres:5432/postgres?schema=public
+      DATABASE_URL: ${DOCKER_DATABASE_URL}
     depends_on:
       - postgres
   ws:
@@ -27,7 +27,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - postgresql://postgres:pswrd@postgres:5432/postgres?schema=public
+      DATABASE_URL: ${DOCKER_DATABASE_URL}
     depends_on:
       - postgres
   postgres:
@@ -35,7 +35,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_PASSWORD=pswrd
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
