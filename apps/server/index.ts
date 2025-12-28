@@ -39,5 +39,5 @@ app.post("/user", (req: Request, res: Response) => {
 });
 
 app.listen(8000, () => {
-  console.log("Sever is running at 8000");
+  console.log("Sever is running:8000");
 });
