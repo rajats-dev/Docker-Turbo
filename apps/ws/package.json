@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "bun --env-file=../../.env run index.ts",
-    "start": "bun run index.ts"
+    "start": "bun run db:generate && bun run index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"

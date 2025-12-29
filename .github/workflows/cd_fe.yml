@@ -1,4 +1,4 @@
-name: Deploy Server
+name: Deploy Frontend
 
 on:
   push:
@@ -20,6 +20,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/Dockerfile.se
+          file: ./docker/Dockerfile.fe
+          build-args:
+            - DATABASE_URL=${secrets.DATABASE_URL}
           push: true
-          tags: rajatsdev/docker-turbo-server:${{ github.sha }}
+          tags: rajatsdev/docker-turbo-fe:${{ github.sha }}

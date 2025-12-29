@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy Websocket
 
 on:
   push:
@@ -22,4 +22,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile.ws
           push: true
-          tags: rajatsdev/docker-turbo-server:${{ github.sha }}
+          tags: rajatsdev/docker-turbo-ws:${{ github.sha }}
