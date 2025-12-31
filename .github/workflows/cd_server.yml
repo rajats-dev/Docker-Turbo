@@ -33,4 +33,7 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key.pem
           chmod 700 private_key.pem
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ${COMPUTE_USERNAME}@${COMPUTE_HOST} -t "docker stop turbo-server && docker run -e DATABASE_URL='"$DATABASE_URL"' --name turbo-server -d -p 8000:8000 rajatsdev/docker-turbo-server:${{ github.sha }}"
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ${COMPUTE_USERNAME}@${COMPUTE_HOST} -t 
+          'docker stop turbo-server || true && 
+          docker rm turbo-server || true && 
+          docker run -e DATABASE_URL='"$DATABASE_URL"' --name turbo-server -d -p 8000:8000 rajatsdev/docker-turbo-server:${{ github.sha }}'
