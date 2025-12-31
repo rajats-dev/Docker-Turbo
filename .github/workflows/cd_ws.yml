@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key.pem
           chmod 700 private_key.pem
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ${COMPUTE_USERNAME}@${COMPUTE_HOST} -t 
-          'docker stop turbo-ws || true && 
-          docker rm turbo-ws || true && 
-          docker run -e DATABASE_URL='"$DATABASE_URL"' --name turbo-ws -d -p 8081:8081 rajatsdev/docker-turbo-ws:${{ github.sha }}'
+          ssh -o StrictHostKeyChecking=no -i private_key.pem ${COMPUTE_USERNAME}@${COMPUTE_HOST} -t "\ 
+          docker stop turbo-ws || true && \
+          docker rm turbo-ws || true && \
+          docker run -e DATABASE_URL='"$DATABASE_URL"' --name turbo-ws -d -p 8081:8081 rajatsdev/docker-turbo-ws:${{ github.sha }}"
