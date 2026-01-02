@@ -5,3 +5,5 @@ export default async function Home() {
 
   return <>{JSON.stringify(users)}</>;
 }
+
+export const dynamic = "force-dynamic";
